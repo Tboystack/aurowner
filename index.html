@@ -6,7 +6,7 @@
   <style>
     body {
       margin: 0;
-      height: 100vh;
+      min-height: 100vh;
       font-family: Arial, sans-serif;
       background: linear-gradient(-45deg, #ff6ec4, #7873f5, #4adede, #ff9a8b);
       background-size: 400% 400%;
@@ -26,7 +26,7 @@
       100% {background-position: 0% 50%;}
     }
     .typewriter {
-      font-size: 1.4em;
+      font-size: 1.3em;
       margin: 15px 0;
       white-space: pre-wrap;
       border-right: .15em solid #fff;
@@ -52,11 +52,29 @@
       background: #4adede;
       transform: scale(1.05);
     }
+    .note {
+      margin-top: 20px;
+      font-size: 1.1em;
+    }
+    .note a {
+      color: #25D366; /* WhatsApp green */
+      font-weight: bold;
+      text-decoration: none;
+    }
+    .note a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
   <div id="textContainer"></div>
   <button class="btn" onclick="location.href='secure.html'">View Secured Info</button>
+  <p class="note">
+    To view secured info, purchase code from 
+    <a href="https://wa.me/2347041829634?text=Hi,%20I%20want%20to%20purchase%20the%20code%20to%20view%20Priscilla's%20info" target="_blank">
+      WhatsApp
+    </a>
+  </p>
 
   <audio id="keySound" src="typewriter-key.mp3"></audio>
   <audio id="chimeSound" src="chime.mp3"></audio>
@@ -82,7 +100,6 @@
 
     function typeLine() {
       if(lineIndex < lines.length) {
-        // Create a span for this line if not exists
         if(charIndex === 0) {
           const span = document.createElement("div");
           span.className = "typewriter";
@@ -96,13 +113,12 @@
 
         charIndex++;
         if(charIndex < lines[lineIndex].length) {
-          setTimeout(typeLine, 100);
+          setTimeout(typeLine, 50); // faster typing speed
         } else {
-          // Finished this line
           chimeSound.play();
           charIndex = 0;
           lineIndex++;
-          setTimeout(typeLine, 800); // pause before next line
+          setTimeout(typeLine, 500); // short pause before next line
         }
       }
     }
