@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Secured Info</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(-45deg, #ff6ec4, #7873f5, #4adede, #ff9a8b);
+      background-size: 400% 400%;
+      animation: gradientBG 10s ease infinite;
+    }
+    @keyframes gradientBG {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+    .card {
+      background: white;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      text-align: center;
+      width: 400px;
+      animation: slideIn 1s ease forwards;
+      opacity: 0;
+      transform: translateY(50px);
+    }
+    @keyframes slideIn {
+      to {opacity: 1; transform: translateY(0);}
+    }
+    .card img {
+      width: 250px;
+      border-radius: 10px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>Secured Info</h2>
+    <p>WhatsApp Number: +2348080880956</p>
+    <p>Address: 24-26 Ocean Crest Avenue, Victoria Island, Lagos</p>
+    <img src="priscilla.png" alt="Priscilla">
+  </div>
+</body>
+</html>

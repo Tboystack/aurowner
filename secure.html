@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Secured Access</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(-45deg, #ff6ec4, #7873f5, #4adede, #ff9a8b);
+      background-size: 400% 400%;
+      animation: gradientBG 10s ease infinite;
+    }
+    @keyframes gradientBG {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+    .card {
+      background: white;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      text-align: center;
+      width: 350px;
+      animation: fadeIn 2s ease;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+    input {
+      padding: 10px;
+      font-size: 18px;
+      border: 2px solid #7873f5;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      width: 80%;
+    }
+    button {
+      padding: 12px 25px;
+      font-size: 18px;
+      border: none;
+      border-radius: 8px;
+      background: #7873f5;
+      color: white;
+      cursor: pointer;
+      transition: 0.3s;
+      margin-top: 10px;
+    }
+    button:hover {
+      background: #4adede;
+      transform: scale(1.05);
+    }
+    .error {
+      margin-top: 20px;
+      color: red;
+      font-size: 16px;
+      display: none;
+    }
+    .error a {
+      color: #7873f5;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .error a:hover {
+      text-decoration: underline;
+    }
+    .back-btn {
+      margin-top: 15px;
+      display: inline-block;
+      padding: 10px 20px;
+      background: #ff6ec4;
+      color: white;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+    .back-btn:hover {
+      background: #7873f5;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>Enter Password</h2>
+    <input type="password" id="password" placeholder="Password">
+    <br>
+    <button onclick="checkPassword()">Unlock</button>
+    <div class="error" id="errorMsg">
+      Wrong password. <br>
+      <a href="https://wa.me/2347041829634?text=Hi,%20i%20am%20here%20to%20pay%20the%20sum%20of%2050,000%20naira%20to%20view%20Priscilla's%20info">
+        Click here to purchase PIN to view Priscilla's information
+      </a>
+      <br>
+      <a href="index.html" class="back-btn">Back to Main Page</a>
+    </div>
+  </div>
+
+  <script>
+    function checkPassword() {
+      const pwd = document.getElementById('password').value;
+      if(pwd === "232323") {
+        window.location.href = "info.html";
+      } else {
+        document.getElementById('errorMsg').style.display = "block";
+      }
+    }
+  </script>
+</body>
+</html>

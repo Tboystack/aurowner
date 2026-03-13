@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login - Aurowner</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(-45deg, #ff6ec4, #7873f5, #4adede, #ff9a8b);
+      background-size: 400% 400%;
+      animation: gradientBG 10s ease infinite;
+    }
+    @keyframes gradientBG {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+    .card {
+      background: white;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      text-align: center;
+      animation: fadeIn 2s ease;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+    input {
+      padding: 10px;
+      font-size: 18px;
+      border: 2px solid #7873f5;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      width: 80%;
+    }
+    button {
+      padding: 12px 25px;
+      font-size: 18px;
+      border: none;
+      border-radius: 8px;
+      background: #7873f5;
+      color: white;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #4adede;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>Enter PIN to Continue</h2>
+    <input type="password" id="pin" placeholder="PIN">
+    <br>
+    <button onclick="login()">Login</button>
+  </div>
+
+  <script>
+    function login() {
+      const pin = document.getElementById('pin').value;
+      if(pin === "1234") {
+        window.location.href = "index.html";
+      } else {
+        window.location.href = "https://wa.me/2347041829634?text=I%20am%20ready%20to%20pay%2050,000%20naira%20to%20view%20information";
+      }
+    }
+  </script>
+</body>

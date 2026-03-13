@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Aurowner - Priscilla</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(-45deg, #ff6ec4, #7873f5, #4adede, #ff9a8b);
+      background-size: 400% 400%;
+      animation: gradientBG 10s ease infinite;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+    }
+    @keyframes gradientBG {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+    h1 {
+      font-size: 3em;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: .15em solid #fff;
+      animation: blinkCursor 0.8s infinite;
+    }
+    @keyframes blinkCursor {
+      from {border-color: transparent;}
+      to {border-color: white;}
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 30px;
+      font-size: 1.5em;
+    }
+    ul li {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 1s forwards;
+    }
+    @keyframes fadeUp {
+      to {opacity: 1; transform: translateY(0);}
+    }
+    .btn {
+      margin-top: 40px;
+      padding: 15px 30px;
+      font-size: 20px;
+      border: none;
+      border-radius: 10px;
+      background: #7873f5;
+      color: white;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .btn:hover {
+      background: #4adede;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <h1 id="typewriter"></h1>
+  <ul id="list">
+    <li style="animation-delay: 0.5s;">She’s so tall, clouds ask her for directions.</li>
+    <li style="animation-delay: 1s;">She’s so rich, even Monopoly money feels insecure.</li>
+    <li style="animation-delay: 1.5s;">She’s so beautiful, mirrors applaud when she walks by.</li>
+    <li style="animation-delay: 2s;">She’s so young, yet already the CEO of being fabulous.</li>
+    <li style="animation-delay: 2.5s;">Rumor has it, when Priscilla enters a room, Wi‑Fi gets stronger, food tastes better, and everyone suddenly remembers their passwords.</li>
+  </ul>
+  <button class="btn" onclick="location.href='secure.html'">View Secured Info</button>
+
+  <audio id="keySound" src="typewriter-key.mp3"></audio>
+  <audio id="chimeSound" src="chime.mp3"></audio>
+
+  <script>
+    const text = "Priscilla - Aurowner";
+    const typewriter = document.getElementById("typewriter");
+    const keySound = document.getElementById("keySound");
+    const chimeSound = document.getElementById("chimeSound");
+    let i = 0;
+
+    function type() {
+      if(i < text.length) {
+        typewriter.textContent += text.charAt(i);
+        keySound.currentTime = 0;
+        keySound.play();
+        i++;
+        setTimeout(type, 200);
+      } else {
+        chimeSound.play();
+        revealList();
+      }
+    }
+
+    function revealList() {
+      const items = document.querySelectorAll("#list li");
+      items.forEach((item, index) => {
+        setTimeout(() => {
+          item.style.opacity = "1";
+          item.style.transform = "translateY(0)";
+        }, index * 500);
+      });
+    }
+
+    window.onload = type;
+  </script>
+</body>
+</html>
