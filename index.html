@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Aurowner - Priscilla</title>
+  <title>Priscilla - Aurowner</title>
   <style>
     body {
       margin: 0;
@@ -15,44 +15,32 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
       text-align: center;
-      overflow: hidden;
+      padding: 20px;
+      overflow-y: auto;
     }
     @keyframes gradientBG {
       0% {background-position: 0% 50%;}
       50% {background-position: 100% 50%;}
       100% {background-position: 0% 50%;}
     }
-    h1 {
-      font-size: 3em;
-      white-space: nowrap;
-      overflow: hidden;
+    .typewriter {
+      font-size: 1.4em;
+      margin: 15px 0;
+      white-space: pre-wrap;
       border-right: .15em solid #fff;
       animation: blinkCursor 0.8s infinite;
+      display: inline-block;
     }
     @keyframes blinkCursor {
       from {border-color: transparent;}
       to {border-color: white;}
     }
-    ul {
-      list-style: none;
-      padding: 0;
-      margin-top: 30px;
-      font-size: 1.5em;
-    }
-    ul li {
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeUp 1s forwards;
-    }
-    @keyframes fadeUp {
-      to {opacity: 1; transform: translateY(0);}
-    }
     .btn {
-      margin-top: 40px;
-      padding: 15px 30px;
-      font-size: 20px;
+      margin-top: 30px;
+      padding: 12px 25px;
+      font-size: 18px;
       border: none;
       border-radius: 10px;
       background: #7873f5;
@@ -67,51 +55,59 @@
   </style>
 </head>
 <body>
-  <h1 id="typewriter"></h1>
+  <div id="textContainer"></div>
   <button class="btn" onclick="location.href='secure.html'">View Secured Info</button>
 
   <audio id="keySound" src="typewriter-key.mp3"></audio>
   <audio id="chimeSound" src="chime.mp3"></audio>
 
   <script>
-    const text = "🎉 Introducing the Legend Herself: Priscilla (Aurowner) 🎉
-As we all know, Priscilla is not just a person—she’s a phenomenon. The youngest, richest, tallest, and most beautiful human to ever grace July 15th with her presence. At only 15 years old, she has already achieved what most of us can only dream of:
-- She’s so tall, clouds ask her for directions.
-- She’s so rich, even Monopoly money feels insecure.
-- She’s so beautiful, mirrors applaud when she walks by.
-- And she’s so young, yet somehow already the CEO of being fabulous.
-Rumor has it, when Priscilla enters a room, Wi‑Fi gets stronger, food tastes better, and everyone suddenly remembers their passwords. Truly, she’s the friend we all brag about knowing.
-So here’s to Aurowner—proof that greatness doesn’t wait for adulthood. 🌟
-";
-    const typewriter = document.getElementById("typewriter");
+    const lines = [
+      "🎉 Introducing the Legend Herself: Priscilla (Aurowner) 🎉",
+      "As we all know, Priscilla is not just a person—she’s a phenomenon. The youngest, richest, tallest, and most beautiful human to ever grace July 15th with her presence. At only 15 years old, she has already achieved what most of us can only dream of:",
+      "• She’s so tall, clouds ask her for directions.",
+      "• She’s so rich, even Monopoly money feels insecure.",
+      "• She’s so beautiful, mirrors applaud when she walks by.",
+      "• And she’s so young, yet somehow already the CEO of being fabulous.",
+      "Rumor has it, when Priscilla enters a room, Wi‑Fi gets stronger, food tastes better, and everyone suddenly remembers their passwords. Truly, she’s the friend we all brag about knowing.",
+      "So here’s to Aurowner—proof that greatness doesn’t wait for adulthood. 🌟"
+    ];
+
+    const container = document.getElementById("textContainer");
     const keySound = document.getElementById("keySound");
     const chimeSound = document.getElementById("chimeSound");
-    let i = 0;
 
-    function type() {
-      if(i < text.length) {
-        typewriter.textContent += text.charAt(i);
+    let lineIndex = 0;
+    let charIndex = 0;
+
+    function typeLine() {
+      if(lineIndex < lines.length) {
+        // Create a span for this line if not exists
+        if(charIndex === 0) {
+          const span = document.createElement("div");
+          span.className = "typewriter";
+          container.appendChild(span);
+        }
+        const currentSpan = container.lastChild;
+        currentSpan.textContent += lines[lineIndex].charAt(charIndex);
+
         keySound.currentTime = 0;
         keySound.play();
-        i++;
-        setTimeout(type, 200);
-      } else {
-        chimeSound.play();
-        revealList();
+
+        charIndex++;
+        if(charIndex < lines[lineIndex].length) {
+          setTimeout(typeLine, 100);
+        } else {
+          // Finished this line
+          chimeSound.play();
+          charIndex = 0;
+          lineIndex++;
+          setTimeout(typeLine, 800); // pause before next line
+        }
       }
     }
 
-    function revealList() {
-      const items = document.querySelectorAll("#list li");
-      items.forEach((item, index) => {
-        setTimeout(() => {
-          item.style.opacity = "1";
-          item.style.transform = "translateY(0)";
-        }, index * 500);
-      });
-    }
-
-    window.onload = type;
+    window.onload = typeLine;
   </script>
 </body>
 </html>
