@@ -47,6 +47,8 @@
       color: white;
       cursor: pointer;
       transition: 0.3s;
+      opacity: 0;
+      display: inline-block;
     }
     .btn:hover {
       background: #4adede;
@@ -55,24 +57,32 @@
     .note {
       margin-top: 20px;
       font-size: 1.1em;
+      opacity: 0;
     }
     .note a {
-      color: #25D366; /* WhatsApp green */
+      color: #25D366;
       font-weight: bold;
       text-decoration: none;
+      animation: glowPulse 1.5s infinite;
     }
-    .note a:hover {
-      text-decoration: underline;
+    @keyframes glowPulse {
+      0% {text-shadow: 0 0 5px #25D366;}
+      50% {text-shadow: 0 0 20px #25D366;}
+      100% {text-shadow: 0 0 5px #25D366;}
+    }
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
     }
   </style>
 </head>
 <body>
   <div id="textContainer"></div>
-  <button class="btn" onclick="location.href='secure.html'">View Secured Info</button>
-  <p class="note">
+  <button class="btn" id="secureBtn" onclick="location.href='secure.html'">View Secured Info</button>
+  <p class="note" id="note">
     To view secured info, purchase code from 
     <a href="https://wa.me/2347041829634?text=Hi,%20I%20want%20to%20purchase%20the%20code%20to%20view%20Priscilla's%20info" target="_blank">
-      WhatsApp
+      Purchase Code
     </a>
   </p>
 
@@ -94,6 +104,8 @@
     const container = document.getElementById("textContainer");
     const keySound = document.getElementById("keySound");
     const chimeSound = document.getElementById("chimeSound");
+    const secureBtn = document.getElementById("secureBtn");
+    const note = document.getElementById("note");
 
     let lineIndex = 0;
     let charIndex = 0;
@@ -113,13 +125,19 @@
 
         charIndex++;
         if(charIndex < lines[lineIndex].length) {
-          setTimeout(typeLine, 50); // faster typing speed
+          setTimeout(typeLine, 40); // fast typing speed
         } else {
           chimeSound.play();
           charIndex = 0;
           lineIndex++;
-          setTimeout(typeLine, 500); // short pause before next line
+          setTimeout(typeLine, 400); // pause before next line
         }
+      } else {
+        // After all lines typed, fade in button and then note
+        secureBtn.style.animation = "fadeIn 1s forwards";
+        setTimeout(() => {
+          note.style.animation = "fadeIn 1s forwards";
+        }, 1200);
       }
     }
 
