@@ -22,11 +22,12 @@
     }
     .card {
       background: white;
-      padding: 40px;
+      padding: 30px;
       border-radius: 15px;
       box-shadow: 0 8px 20px rgba(0,0,0,0.3);
       text-align: center;
-      width: 400px;
+      width: 90%;
+      max-width: 600px;
       animation: slideIn 1s ease forwards;
       opacity: 0;
       transform: translateY(50px);
@@ -34,19 +35,61 @@
     @keyframes slideIn {
       to {opacity: 1; transform: translateY(0);}
     }
+    .card h2 {
+      margin-bottom: 15px;
+      color: #333;
+    }
+    .card p {
+      font-size: 18px;
+      margin: 10px 0;
+      color: #444;
+    }
     .card img {
-      width: 250px;
-      border-radius: 10px;
-      margin-top: 10px;
+      width: 100%;
+      max-width: 400px;
+      height: auto;
+      border-radius: 15px;
+      margin-top: 20px;
+    }
+    .back-btn {
+      margin-top: 20px;
+      display: inline-block;
+      padding: 12px 25px;
+      background: #7873f5;
+      color: white;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+    .back-btn:hover {
+      background: #4adede;
+    }
+    .whatsapp-link {
+      color: #25D366; /* WhatsApp green */
+      font-weight: bold;
+      text-decoration: none;
+      animation: glowPulse 1.5s infinite;
+    }
+    @keyframes glowPulse {
+      0% {text-shadow: 0 0 5px #25D366;}
+      50% {text-shadow: 0 0 20px #25D366;}
+      100% {text-shadow: 0 0 5px #25D366;}
     }
   </style>
 </head>
 <body>
   <div class="card">
     <h2>Secured Info</h2>
-    <p>WhatsApp Number: +2348080880956</p>
-    <p>Address: 24-26 Ocean Crest Avenue, Victoria Island, Lagos</p>
+    <p>
+      WhatsApp Number: 
+      <a class="whatsapp-link" href="https://wa.me/2347041829634?text=Hey,%20Aurowner,%20i%20am%20so%20glad%20to%20meet%20you😍" target="_blank">
+        +2347041829634
+      </a>
+    </p>
+    <p>Address: Hidden Street, Lagos</p>
     <img src="priscilla.png" alt="Priscilla">
+    <br>
+    <a href="index.html" class="back-btn">Back to Main Page</a>
   </div>
 </body>
 </html>
